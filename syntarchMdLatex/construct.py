@@ -36,8 +36,8 @@ class Constructor(object):
     def build_inline_math(self,token: Token):
         return f"${token.contents}$"
     
-    def build_newline(self,token: Token):
-        return f"{token.contents}"
+    def build_inline(self, token: Token):
+        return f"\\colorbox[gray]{{0.9}}{{\\texttt{{{token.contents}}}}}"
     
     def build_context(self,context : list[Token]):
         latex_context = []
@@ -50,8 +50,8 @@ class Constructor(object):
                 latex_context.append(self.build_plaine(text_token))
             elif text_token.type == TokenTypes.TYPE_INLINE_MATH:
                 latex_context.append(self.build_inline_math(text_token))
-            elif text_token.type == TokenTypes.TYPE_NEW_LINE:
-                latex_context.append(self.build_newline(text_token))
+            elif text_token.type == TokenTypes.TYPE_INLINE:
+                latex_context.append(self.build_inline(text_token))
         
         return "".join(latex_context)
 
