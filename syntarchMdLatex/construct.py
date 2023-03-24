@@ -1,4 +1,3 @@
-from asyncio import constants
 from syntarch.types import TokenTypes
 from syntarch.types import TokenValues
 from syntarch.token import Token
